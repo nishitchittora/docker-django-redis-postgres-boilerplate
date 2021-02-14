@@ -1,1 +1,1 @@
-# docker-django-redis-postgres-boilerplate
+# Docker Django Development BoilerPlate with Postgres and Redis
