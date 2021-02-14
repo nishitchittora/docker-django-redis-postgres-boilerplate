@@ -1,17 +1,17 @@
 version: '3'
 
 services:
-  web:
+  django-app:
     restart: always
-    build: ./web
+    build: ./django-app
     expose:
       - "8000"
     links:
       - postgres:postgres
       - redis:redis
     volumes:
-      - web-django:/usr/src/app
-      - web-static:/usr/src/app/static
+      - django-app:/usr/src/app
+      - django-app-static:/usr/src/app/static
     env_file: .env
     environment:
       DEBUG: 'true'
@@ -23,9 +23,9 @@ services:
     ports:
       - "80:80"
     volumes:
-      - web-static:/www/static
+      - django-app-static:/www/static
     links:
-      - web:web
+      - django-app:django-app
 
   postgres:
     restart: always
@@ -44,7 +44,7 @@ services:
       - redisdata:/data
 
 volumes:
-  web-django:
-  web-static:
+  django-app:
+  django-app-static:
   pgdata:
   redisdata:
